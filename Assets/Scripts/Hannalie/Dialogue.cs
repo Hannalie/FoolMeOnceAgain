@@ -5,10 +5,10 @@ using TMPro;
 
 public class Dialogue : MonoBehaviour
 {
-
-    [SerializeField] TextMeshProUGUI textComponent;
-    [SerializeField] string[] lines;
-    [SerializeField] float textSpeed;
+    public TextMeshProUGUI textComponent;
+    public string[] lines;
+    public float textSpeed;
+     [SerializeField] public GameObject arrow;
 
     private int index;
     // Start is called before the first frame update
@@ -27,42 +27,44 @@ public class Dialogue : MonoBehaviour
             {
                 NextLine();
             }
-        }
-
-        else
-        {
-            StopAllCoroutines();
-            textComponent.text = lines[index];
-        }
-
-    }
-
-    private void StartDialogue()
-    {
-        index = 0;
-        StartCoroutine(TypeLine());
-    }
-
-    IEnumerator TypeLine()
-    {
-        foreach (char c in lines[index].ToCharArray())
-        {
-            textComponent.text += c;
-            yield return new WaitForSeconds(textSpeed);
+            else
+            {
+                StopAllCoroutines();
+                textComponent.text = lines[index];
+            }
         }
     }
 
-    private void NextLine()
-    {
-        if(index < lines.Length - 1)
+        void StartDialogue()
         {
-            index++;
-            textComponent.text = string.Empty;
+            index = 0;
             StartCoroutine(TypeLine());
         }
-        else
+
+        IEnumerator TypeLine()
         {
+            foreach (char c in lines[index].ToCharArray())
+            {
+                textComponent.text += c;
+                yield return new WaitForSeconds(textSpeed);
+            }
+        }
+
+        void NextLine()
+        {
+            if (index < lines.Length - 1)
+            {
+                index++;
+                textComponent.text = string.Empty;
+                StartCoroutine(TypeLine());
+            }
+
+            else
+            {
             gameObject.SetActive(false);
+            arrow.SetActive(false);
+            }
+
         }
     }
-}
+
