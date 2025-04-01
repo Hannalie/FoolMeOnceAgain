@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditor.Timeline.Actions;
 
 public class Dialogue : MonoBehaviour
 {
@@ -9,11 +10,15 @@ public class Dialogue : MonoBehaviour
     public string[] lines;
     public float textSpeed;
      [SerializeField] public GameObject arrow;
+    [SerializeField] public GameObject backgroundImage;
+    [SerializeField] public GameObject secondDialogueBox;
 
     private int index;
     // Start is called before the first frame update
     void Start()
     {
+        backgroundImage.SetActive(true);
+        secondDialogueBox.SetActive(false);
         textComponent.text = string.Empty;
         StartDialogue();
     }
@@ -63,8 +68,9 @@ public class Dialogue : MonoBehaviour
             {
             gameObject.SetActive(false);
             arrow.SetActive(false);
+            backgroundImage.SetActive(false);
+            secondDialogueBox.SetActive(true);
             }
-
         }
     }
 
