@@ -9,7 +9,7 @@ public class GetTime : MonoBehaviour
 
     void Start()
     {
-        float elapsedTime = GlobalManager.Instance.elapsedTime;
+        float elapsedTime = PlayerPrefs.GetFloat("LevelTime", 0f);
         int minutes = Mathf.FloorToInt(elapsedTime / 60);
         int secounds = Mathf.FloorToInt(elapsedTime % 60);
 
