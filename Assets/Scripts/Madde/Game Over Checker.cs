@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameOverChecker : MonoBehaviour
 {
     [SerializeField] private GameObject gameOverUI;
-    [SerializeField] private int levelToLoad;
+    [SerializeField] private int levelToLoadWon;
+    [SerializeField] private int levelToLoadLost;
     [SerializeField] private float timeLimit = 180;
 
     private Timer timer;
@@ -25,11 +26,11 @@ public class GameOverChecker : MonoBehaviour
 
             if (timer.elapsedTime > timeLimit)
             {
-                gameOverUI.SetActive(true);
+                timer.LevelCompleted(levelToLoadLost);
             }
             else
             {
-                SceneManager.LoadScene(levelToLoad);
+                timer.LevelCompleted(levelToLoadWon);
             }
         }
     }
