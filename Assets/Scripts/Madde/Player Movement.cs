@@ -18,14 +18,32 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpTime = 0.3f;
     [SerializeField] private float crouchHeight = 0.5f;
     [SerializeField] private float normalHeight = 1f; // För att lättare hantera skalan
+    [SerializeField] private GameObject clickToStart;
 
     private bool isGrounded = false;
     private bool isJumping = false;
     private bool isCrouching = false; // Ny bool för att hantera crouch-state
     private float jumpTimer;
+    private bool gameStarted = false;
+
+    private void Start()
+    {
+        Time.timeScale = 0f; // Pausar spelet
+        clickToStart.SetActive(true); // Visar "Click to Start"-bilden
+    }
 
     private void Update()
     {
+
+        if (!gameStarted)
+        {
+            if (Input.GetMouseButtonDown(0)) // Kollar om spelaren klickar
+            {
+                StartGame();
+            }
+            return; // Hindrar resten av Update från att köra innan spelet startar
+        }
+
         isGrounded = Physics2D.OverlapCircle(feetPos.position, groundDistance, groundLayer);
         bool canStandUp = !Physics2D.OverlapCircle(headPos.position, headCheckDistance, ceilingLayer);
 
@@ -79,5 +97,12 @@ public class PlayerMovement : MonoBehaviour
     {
         // Spelaren springer automatiskt framåt
         rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
+    }
+
+    private void StartGame()
+    {
+        gameStarted = true;
+        Time.timeScale = 1f; // Startar spelet
+        clickToStart.SetActive(false); // Döljer "Click to Start"-bilden
     }
 }
