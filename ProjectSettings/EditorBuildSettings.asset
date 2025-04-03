@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game Beat CutScene.unity
     guid: cbeedcf355dbb884abefc3a5a021ba83
+  - enabled: 1
+    path: Assets/Scenes/OutroCutscene.unity
+    guid: 313e01b934d27d7418d6ac7d5336682d
   m_configObjects: {}
