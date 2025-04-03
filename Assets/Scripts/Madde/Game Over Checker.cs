@@ -18,7 +18,7 @@ public class GameOverChecker : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+   /* private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
@@ -33,6 +33,6 @@ public class GameOverChecker : MonoBehaviour
                 timer.LevelCompleted(levelToLoadWon);
             }
         }
-    }
+    } */
 
 }

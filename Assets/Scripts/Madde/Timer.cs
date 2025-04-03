@@ -6,34 +6,56 @@ using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
-
     [SerializeField] private TextMeshProUGUI timerText;
-
-    public float elapsedTime;
+    private float elapsedTime = 0f;
     private bool isRunning = true;
 
-    
+    private void Start()
+    {
+        // Reset timer if in Scene 3
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            elapsedTime = 0f;  // Reset timer when scene 3 starts
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            // In Scene 4, retrieve and display the final time
+            elapsedTime = PlayerPrefs.GetFloat("timeValue", 0f);
+            isRunning = false;  // Stop timer in Scene 4
+        }
 
-    // Update is called once per frame
+        UpdateTimerUI();
+    }
+
     void Update()
     {
         if (isRunning)
         {
             elapsedTime += Time.deltaTime;
-            int minutes = Mathf.FloorToInt(elapsedTime / 60);
-            int secounds = Mathf.FloorToInt(elapsedTime % 60);
-
-            timerText.text = string.Format("{0:00}:{1:00}", minutes, secounds);
+            UpdateTimerUI();
         }
-        
+    }
+
+    private void UpdateTimerUI()
+    {
+        int minutes = Mathf.FloorToInt(elapsedTime / 60);
+        int seconds = Mathf.FloorToInt(elapsedTime % 60);
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            LevelCompleted(3);
+        }
     }
 
     public void LevelCompleted(int levelToLoad)
     {
-        isRunning = false;
-        PlayerPrefs.SetFloat("Level´Time", elapsedTime);
+        PlayerPrefs.SetFloat("timeValue", elapsedTime); // Save final time
         PlayerPrefs.Save();
+        isRunning = false;
         SceneManager.LoadScene(levelToLoad);
     }
-
 }
