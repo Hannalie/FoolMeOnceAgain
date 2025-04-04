@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Transform GFX;
+    //[SerializeField] private Transform GFX;
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float moveSpeed = 300f;
     [SerializeField] private LayerMask groundLayer;
@@ -19,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float crouchHeight = 0.5f;
     [SerializeField] private float normalHeight = 1f; // För att lättare hantera skalan
     [SerializeField] private GameObject clickToStart;
+    [SerializeField] private float timeLimit;
+    [SerializeField] private int levelToLoadOnLost; 
 
     private bool isGrounded = false;
     private bool isJumping = false;
@@ -27,6 +30,9 @@ public class PlayerMovement : MonoBehaviour
     private bool gameStarted = false;
     private Animator animator;
     private Rigidbody2D rigidBody;
+    private CapsuleCollider2D capsuleCollider;
+    private Timer timer;
+
 
     private void Start()
     {
@@ -34,6 +40,11 @@ public class PlayerMovement : MonoBehaviour
         clickToStart.SetActive(true); // Visar "Click to Start"-bilden
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
+        timer = FindObjectOfType<Timer>();
+
+
+
     }
 
     private void Update()
@@ -80,24 +91,38 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && Input.GetButtonDown("Crouch"))
         {
             isCrouching = true;
-            GFX.localScale = new Vector3(GFX.localScale.x, crouchHeight, GFX.localScale.z);
-            
+            capsuleCollider.size = new Vector2(capsuleCollider.size.x, 0.9f);
+
+        }
+
+        if (Input.GetButtonUp("Crouch"))
+        {
+            isCrouching = false;
+            capsuleCollider.size = new Vector2(capsuleCollider.size.x, 1.8f);
         }
 
         if (isJumping && Input.GetButton("Crouch"))
         {
-            GFX.localScale = new Vector3(GFX.localScale.x, 1f, GFX.localScale.z);
+            isCrouching = false;
+            capsuleCollider.size = new Vector2(capsuleCollider.size.x, 1.8f);
         }
 
         if (Input.GetButtonUp("Crouch") && canStandUp)
         {
             isCrouching = false;
-            GFX.localScale = new Vector3(GFX.localScale.x, normalHeight, GFX.localScale.z);
-            
+            capsuleCollider.size = new Vector2(capsuleCollider.size.x, 1.8f);
+
         }
         animator.SetFloat("MoveSpeed", Mathf.Abs(rigidBody.velocity.x));
         animator.SetFloat("VerticalSpeed", rigidBody.velocity.y);
         animator.SetBool("IsGrounded", isGrounded);
+        animator.SetBool("IsCrouching", isCrouching);
+
+        if (timer.elapsedTime > timeLimit)
+        {
+            SceneManager.LoadScene(levelToLoadOnLost);
+        }
+
     }
 
     void FixedUpdate()

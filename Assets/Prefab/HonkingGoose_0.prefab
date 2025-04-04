@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7241144896825082242}
   - component: {fileID: 8397341651491881550}
   - component: {fileID: 5593827936944239728}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HonkingGoose_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
