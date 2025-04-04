@@ -25,11 +25,15 @@ public class PlayerMovement : MonoBehaviour
     private bool isCrouching = false; // Ny bool för att hantera crouch-state
     private float jumpTimer;
     private bool gameStarted = false;
+    private Animator animator;
+    private Rigidbody2D rigidBody;
 
     private void Start()
     {
         Time.timeScale = 0f; // Pausar spelet
         clickToStart.SetActive(true); // Visar "Click to Start"-bilden
+        rigidBody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -91,6 +95,9 @@ public class PlayerMovement : MonoBehaviour
             GFX.localScale = new Vector3(GFX.localScale.x, normalHeight, GFX.localScale.z);
             
         }
+        animator.SetFloat("MoveSpeed", Mathf.Abs(rigidBody.velocity.x));
+        animator.SetFloat("VerticalSpeed", rigidBody.velocity.y);
+        animator.SetBool("IsGrounded", isGrounded);
     }
 
     void FixedUpdate()
@@ -105,4 +112,5 @@ public class PlayerMovement : MonoBehaviour
         Time.timeScale = 1f; // Startar spelet
         clickToStart.SetActive(false); // Döljer "Click to Start"-bilden
     }
+
 }

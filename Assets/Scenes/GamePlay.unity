@@ -4120,8 +4120,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1447334713}
-  timerOn: 1
-  elapsedTime: 0
 --- !u!4 &497667234
 Transform:
   m_ObjectHideFlags: 0
@@ -4743,7 +4741,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 13.155}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -481, y: 204}
+  m_AnchoredPosition: {x: -478, y: 194}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &631240745
@@ -4766,8 +4764,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Anna and her friends saw you and are trying to leave! Catch them before
-    they can get away!!
+  m_text: 'Anna and her friends saw you and are trying to leave! Catch them before
+    they can get away!! '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0de1b9891c6794f41a46e0dd5f1dcad1, type: 2}
   m_sharedMaterial: {fileID: -682084913023858514, guid: 0de1b9891c6794f41a46e0dd5f1dcad1, type: 2}
@@ -4794,8 +4792,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 42
+  m_fontSizeBase: 42
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4830,7 +4828,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -283.05676, w: 0}
+  m_margin: {x: -1.9142456, y: 0, z: -402.9097, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -6559,6 +6557,7 @@ GameObject:
   - component: {fileID: 933487130}
   - component: {fileID: 933487132}
   - component: {fileID: 933487131}
+  - component: {fileID: 933487134}
   m_Layer: 0
   m_Name: Idle_KG_1_0
   m_TagString: Player
@@ -6657,7 +6656,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1798071357, guid: f7083c47c470bfc4eafb28a977e8d8c5, type: 3}
+  m_Sprite: {fileID: 1967833162, guid: 3fed52908f282e543baf2e471c0a8212, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6668,6 +6667,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &933487134
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 933487129}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 36b4be199b9c70b4f9cb0dbc682fa6a8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &942332533
 GameObject:
   m_ObjectHideFlags: 0
@@ -42401,7 +42421,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 307.3, y: 50}
+  m_SizeDelta: {x: 804.4417, y: 107.3624}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1548068508
 MonoBehaviour:
@@ -42450,8 +42470,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 100
+  m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -42642,6 +42662,7 @@ GameObject:
   - component: {fileID: 1611838815}
   - component: {fileID: 1611838814}
   - component: {fileID: 1611838817}
+  - component: {fileID: 1611838818}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -42736,6 +42757,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 412542bd66786de468e54330852f7a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1611838818
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611838813}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 36b4be199b9c70b4f9cb0dbc682fa6a8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1629825891
 GameObject:
   m_ObjectHideFlags: 0
