@@ -56,6 +56,12 @@ public class Timer : MonoBehaviour
         PlayerPrefs.SetFloat("timeValue", elapsedTime); // Save final time
         PlayerPrefs.Save();
         isRunning = false;
-        SceneManager.LoadScene(levelToLoad);
+
+        Invoke("LevelThing", 1.0f);
+    }
+
+    private void LevelThing()
+    {
+        SceneManager.LoadScene(3);
     }
 }

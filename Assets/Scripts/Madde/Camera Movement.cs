@@ -6,7 +6,7 @@ public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private Transform player;  // Referens till spelaren
     [SerializeField] private float smoothSpeed = 5f;  // Hur snabbt kameran följer
-    [SerializeField] private Vector3 offset = new Vector3(2f, 1f, -10f);  // Justera för att få rätt position
+    [SerializeField] private Vector3 offset = new Vector3(2f, 1f, -13f);  // Justera för att fErätt position
 
     void LateUpdate()
     {
