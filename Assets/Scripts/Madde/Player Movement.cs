@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float crouchHeight = 0.5f;
     [SerializeField] private float normalHeight = 1f; // För att lättare hantera skalan
     [SerializeField] private GameObject clickToStart;
+    [SerializeField] private float timeLimit;
+    [SerializeField] private int levelToLoadOnLost; 
 
     private bool isGrounded = false;
     private bool isJumping = false;
@@ -28,7 +31,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rigidBody;
     private CapsuleCollider2D capsuleCollider;
-    
+    private Timer timer;
+
 
     private void Start()
     {
@@ -37,7 +41,10 @@ public class PlayerMovement : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
-        
+        timer = FindObjectOfType<Timer>();
+
+
+
     }
 
     private void Update()
@@ -110,6 +117,12 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("VerticalSpeed", rigidBody.velocity.y);
         animator.SetBool("IsGrounded", isGrounded);
         animator.SetBool("IsCrouching", isCrouching);
+
+        if (timer.elapsedTime > timeLimit)
+        {
+            SceneManager.LoadScene(levelToLoadOnLost);
+        }
+
     }
 
     void FixedUpdate()
