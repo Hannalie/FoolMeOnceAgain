@@ -57,7 +57,7 @@ public class Timer : MonoBehaviour
         PlayerPrefs.Save();
         isRunning = false;
 
-        Invoke("LevelThing", 1.0f);
+        Invoke("LevelThing", 0.6f);
     }
 
     private void LevelThing()
