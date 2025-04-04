@@ -2,7 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+#if UNITY_EDITOR
 using UnityEditor.Timeline.Actions;
+#endif
+
+
 
 public class Dialogue : MonoBehaviour
 {
